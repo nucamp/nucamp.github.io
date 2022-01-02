@@ -1,0 +1,12 @@
+categories
+customers
+regions
+shippers
+suppliers
+employees
+territories
+products
+orders
+employees_territories
+order_details
+us_states

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?><database name="northwind" schema="public" type="PostgreSQL - 14.1">
+   <sequences>
+      <sequence increment="1" name="categories_category_id_seq" startValue="1"/>
+      <sequence increment="1" name="employees_employee_id_seq" startValue="1"/>
+      <sequence increment="1" name="orders_order_id_seq" startValue="1"/>
+      <sequence increment="1" name="products_product_id_seq" startValue="1"/>
+      <sequence increment="1" name="regions_region_id_seq" startValue="1"/>
+      <sequence increment="1" name="shippers_shipper_id_seq" startValue="1"/>
+      <sequence increment="1" name="suppliers_supplier_id_seq" startValue="1"/>
+      <sequence increment="1" name="us_states_state_id_seq" startValue="1"/>
+   </sequences>
+   <tables>
+      <table name="categories" numRows="8" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('categories_category_id_seq'::regclass)" digits="0" id="0" name="category_id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="category_id" foreignKey="fk_products_categories" implied="false" onDeleteCascade="false" schema="public" table="products"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="category_name" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="picture" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="category_id" sequenceNumberInPK="1"/>
+         <index name="pk_categories" unique="true">
+            <column ascending="true" name="category_id"/>
+         </index>
+      </table>
+      <table name="customers" numRows="91" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="customer_id" nullable="false" remarks="" size="5" type="bpchar" typeCode="1">
+            <child column="customer_id" foreignKey="fk_orders_customers" implied="false" onDeleteCascade="false" schema="public" table="orders"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="company_name" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="contact_name" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="contact_title" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="address" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="city" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="region" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="postal_code" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="country" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="phone" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="fax" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="customer_id" sequenceNumberInPK="1"/>
+         <index name="pk_customers" unique="true">
+            <column ascending="true" name="customer_id"/>
+         </index>
+      </table>
+      <table name="employees" numRows="9" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('employees_employee_id_seq'::regclass)" digits="0" id="0" name="employee_id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="reports_to" foreignKey="fk_employees_employees" implied="false" onDeleteCascade="false" schema="public" table="employees"/>
+            <child column="employee_id" foreignKey="fk_employees_territories_employees" implied="false" onDeleteCascade="false" schema="public" table="employees_territories"/>
+            <child column="employee_id" foreignKey="fk_orders_employees" implied="false" onDeleteCascade="false" schema="public" table="orders"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="last_name" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="first_name" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="title" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="title_of_courtesy" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="birth_date" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="hire_date" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="address" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="city" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="region" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="postal_code" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="country" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="home_phone" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="extension" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="notes" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="reports_to" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="employee_id" foreignKey="fk_employees_employees" implied="false" onDeleteCascade="false" schema="public" table="employees"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="photo_path" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="employee_id" sequenceNumberInPK="1"/>
+         <index name="pk_employees" unique="true">
+            <column ascending="true" name="employee_id"/>
+         </index>
+      </table>
+      <table name="employees_territories" numRows="49" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="employee_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="employee_id" foreignKey="fk_employees_territories_employees" implied="false" onDeleteCascade="false" schema="public" table="employees"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="territory_id" nullable="false" remarks="" size="2147483647" type="text" typeCode="12">
+            <parent column="territory_id" foreignKey="fk_employees_territories_territories" implied="false" onDeleteCascade="false" schema="public" table="territories"/>
+         </column>
+         <primaryKey column="employee_id" sequenceNumberInPK="1"/>
+         <primaryKey column="territory_id" sequenceNumberInPK="2"/>
+         <index name="pk_employees_territories" unique="true">
+            <column ascending="true" name="employee_id"/>
+            <column ascending="true" name="territory_id"/>
+         </index>
+      </table>
+      <table name="order_details" numRows="2155" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="order_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="order_id" foreignKey="fk_order_details_orders" implied="false" onDeleteCascade="false" schema="public" table="orders"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="product_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="product_id" foreignKey="fk_order_details_products" implied="false" onDeleteCascade="false" schema="public" table="products"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="unit_price" nullable="false" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="quantity" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="discount" nullable="false" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <primaryKey column="order_id" sequenceNumberInPK="1"/>
+         <primaryKey column="product_id" sequenceNumberInPK="2"/>
+         <index name="pk_order_details" unique="true">
+            <column ascending="true" name="order_id"/>
+            <column ascending="true" name="product_id"/>
+         </index>
+      </table>
+      <table name="orders" numRows="830" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('orders_order_id_seq'::regclass)" digits="0" id="0" name="order_id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="order_id" foreignKey="fk_order_details_orders" implied="false" onDeleteCascade="false" schema="public" table="order_details"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="customer_id" nullable="true" remarks="" size="2147483647" type="text" typeCode="12">
+            <parent column="customer_id" foreignKey="fk_orders_customers" implied="false" onDeleteCascade="false" schema="public" table="customers"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="employee_id" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="employee_id" foreignKey="fk_orders_employees" implied="false" onDeleteCascade="false" schema="public" table="employees"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="order_date" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="required_date" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="shipped_date" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="ship_via" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="shipper_id" foreignKey="fk_orders_shippers" implied="false" onDeleteCascade="false" schema="public" table="shippers"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="freight" nullable="true" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="ship_name" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="ship_address" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="ship_city" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="ship_region" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="ship_postal_code" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="ship_country" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="order_id" sequenceNumberInPK="1"/>
+         <index name="pk_orders" unique="true">
+            <column ascending="true" name="order_id"/>
+         </index>
+      </table>
+      <table name="products" numRows="77" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('products_product_id_seq'::regclass)" digits="0" id="0" name="product_id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="product_id" foreignKey="fk_order_details_products" implied="false" onDeleteCascade="false" schema="public" table="order_details"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="product_name" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="supplier_id" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="supplier_id" foreignKey="fk_products_suppliers" implied="false" onDeleteCascade="false" schema="public" table="suppliers"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="category_id" nullable="true" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="category_id" foreignKey="fk_products_categories" implied="false" onDeleteCascade="false" schema="public" table="categories"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="quantity_per_unit" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="unit_price" nullable="true" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="units_in_stock" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="units_on_order" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="reorder_level" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="9" name="discontinued" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <primaryKey column="product_id" sequenceNumberInPK="1"/>
+         <index name="pk_products" unique="true">
+            <column ascending="true" name="product_id"/>
+         </index>
+      </table>
+      <table name="regions" numRows="4" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('regions_region_id_seq'::regclass)" digits="0" id="0" name="region_id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="region_id" foreignKey="fk_territories_region" implied="false" onDeleteCascade="false" schema="public" table="territories"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="region_description" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="region_id" sequenceNumberInPK="1"/>
+         <index name="pk_region" unique="true">
+            <column ascending="true" name="region_id"/>
+         </index>
+      </table>
+      <table name="shippers" numRows="6" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('shippers_shipper_id_seq'::regclass)" digits="0" id="0" name="shipper_id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="ship_via" foreignKey="fk_orders_shippers" implied="false" onDeleteCascade="false" schema="public" table="orders"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="company_name" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="phone" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="shipper_id" sequenceNumberInPK="1"/>
+         <index name="pk_shippers" unique="true">
+            <column ascending="true" name="shipper_id"/>
+         </index>
+      </table>
+      <table name="suppliers" numRows="29" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('suppliers_supplier_id_seq'::regclass)" digits="0" id="0" name="supplier_id" nullable="false" remarks="" size="10" type="serial" typeCode="4">
+            <child column="supplier_id" foreignKey="fk_products_suppliers" implied="false" onDeleteCascade="false" schema="public" table="products"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="company_name" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="contact_name" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="contact_title" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="address" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="city" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="region" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="postal_code" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="country" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="phone" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="fax" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="homepage" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="supplier_id" sequenceNumberInPK="1"/>
+         <index name="pk_suppliers" unique="true">
+            <column ascending="true" name="supplier_id"/>
+         </index>
+      </table>
+      <table name="territories" numRows="53" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="territory_id" nullable="false" remarks="" size="2147483647" type="text" typeCode="12">
+            <child column="territory_id" foreignKey="fk_employees_territories_territories" implied="false" onDeleteCascade="false" schema="public" table="employees_territories"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="territory_description" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="region_id" nullable="false" remarks="" size="10" type="int4" typeCode="4">
+            <parent column="region_id" foreignKey="fk_territories_region" implied="false" onDeleteCascade="false" schema="public" table="regions"/>
+         </column>
+         <primaryKey column="territory_id" sequenceNumberInPK="1"/>
+         <index name="pk_territories" unique="true">
+            <column ascending="true" name="territory_id"/>
+         </index>
+      </table>
+      <table name="us_states" numRows="51" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('us_states_state_id_seq'::regclass)" digits="0" id="0" name="state_id" nullable="false" remarks="" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="state_name" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="state_abbr" nullable="false" remarks="" size="2" type="bpchar" typeCode="1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="state_region" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="state_id" sequenceNumberInPK="1"/>
+         <index name="pk_usstates" unique="true">
+            <column ascending="true" name="state_id"/>
+         </index>
+      </table>
+   </tables>
+</database>
